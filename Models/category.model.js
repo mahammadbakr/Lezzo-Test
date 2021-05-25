@@ -4,6 +4,7 @@ const sqlDatabase = require("./database.js");
 const Category = function(category) {
   this.name = category.name;
   this.description = category.description;
+  this.storeId = category.storeId;
 };
 
 Category.create = (newCategory, result) => {
@@ -52,8 +53,8 @@ Category.getAll = result => {
 
 Category.updateById = (id, category, result) => {
     sqlDatabase.query(
-    "UPDATE categories SET email = ?, name = ?, active = ? WHERE id = ?",
-    [category.email, category.name, category.active, id],
+    "UPDATE categories SET name = ?, description = ?, storeId = ? WHERE id = ?",
+    [category.name, category.description, category.storeId, id],
     (err, res) => {
       if (err) {
         console.log("Error: ", err);
