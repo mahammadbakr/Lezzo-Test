@@ -1,33 +1,33 @@
 const Category = require("../Models/category.model.js");
 
 
-// Create and Save a new Category
-exports.create = (req, res) => {
-  // Validate request
-  if (req.body == "" || req.body == null || req.body == {} || !req.body) {
-    res.status(400).send({
-      message: "Content can not be empty!"
-    });
-   }
+// // Create and Save a new Category
+// exports.create = (req, res) => {
+//   // Validate request
+//   if (req.body == "" || req.body == null || req.body == {} || !req.body) {
+//     res.status(400).send({
+//       message: "Content can not be empty!"
+//     });
+//    }
 
-  // Create a Category
-  const category = new Category({
-    name: req.body.name,
-    description: req.body.description,
-    image: req.body.image,
-    storeId: req.body.storeId
-  });
+//   // Create a Category
+//   const category = new Category({
+//     name: req.body.name,
+//     description: req.body.description,
+//     image: req.body.image,
+//     storeId: req.body.storeId
+//   });
 
-  // Save Category in the database
-  Category.create(category, (err, data) => {
-    if (err)
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while creating the Category."
-      });
-    else res.send(data);
-  });
-};
+//   // Save Category in the database
+//   Category.create(category, (err, data) => {
+//     if (err)
+//       res.status(500).send({
+//         message:
+//           err.message || "Some error occurred while creating the Category."
+//       });
+//     else res.send(data);
+//   });
+// };
 
 // Retrieve all Categories from the database.
 exports.findAll = (req, res) => {
@@ -116,3 +116,5 @@ exports.deleteAll = (req, res) => {
     else res.send({ message: `All Categories were deleted successfully!` });
   });
 };
+
+

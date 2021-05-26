@@ -2,11 +2,21 @@ module.exports = app => {
   const catController = require("../Controller/category.controller.js");
   const storeController = require("../Controller/store.controller.js");
   const productController = require("../Controller/product.controller.js");
+  const addController = require("../Controller/add.controller.js");
 
-  ////Category Routes
+ 
+  ////Add Routes
 
-  // Create a new Category
-  app.post("/createCategory", catController.create);
+  //separated routes to create objects 
+  //(Due Upload image file we need use router inside the controller !)
+  app.use("/create",addController);
+
+
+
+  ////Category Routes 
+
+  // Create a new Category(old)
+  // app.post("/createCategory", catController.create);
 
   // Retrieve all Categories
   app.get("/categories", catController.findAll);
@@ -21,14 +31,14 @@ module.exports = app => {
   app.delete("/categories/:categoryId", catController.delete);
 
   // Delete All Categories
-  app.delete("/deleteCategories", catController.deleteAll);
+  app.delete("/delete/categories", catController.deleteAll);
 
 
   
   ////Store Routes
   
-  // Create a new Store
-  app.post("/createStore", storeController.create);
+  // // Create a new Store(old)
+  // app.post("/createStore", storeController.create);
 
   // Retrieve all Stores
   app.get("/stores", storeController.findAll);
@@ -46,14 +56,14 @@ module.exports = app => {
   app.delete("/stores/:storeId", storeController.delete);
 
   // Delete All Stores
-  app.delete("/deleteStores", storeController.deleteAll);
+  app.delete("/delete/stores", storeController.deleteAll);
 
 
 
    ////Product Routes
   
-  // Create a new Product
-  app.post("/createProduct", productController.create);
+  // // Create a new Product(old)
+  // app.post("/createProduct", productController.create);
 
   // Retrieve all Products
   app.get("/products", productController.findAll);
@@ -68,7 +78,7 @@ module.exports = app => {
   app.delete("/products/:productId", productController.delete);
 
   // Delete All Products
-  app.delete("/deleteProducts", productController.deleteAll);
+  app.delete("/delete/products", productController.deleteAll);
 
 
 };

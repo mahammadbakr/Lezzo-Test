@@ -1,31 +1,32 @@
 const Store = require("../Models/store.model.js");
 
-// Create and Save a new Store
-exports.create = (req, res) => {
-// Validate request
-if (req.body == "" || req.body == null || req.body == {} || !req.body) {
-  res.status(400).send({
-    message: "Content can not be empty!"
-  });
- }
 
-  // Create a Store
-  const store = new Store({
-    name: req.body.name,
-    location: req.body.location,
-    image: req.body.image
-  });
+// // Create and Save a new Store
+// exports.create = (req, res) => {
+// // Validate request
+// if (req.body == "" || req.body == null || req.body == {} || !req.body) {
+//   res.status(400).send({
+//     message: "Content can not be empty!"
+//   });
+//  }
 
-  // Save Store in the database
-  Store.create(store, (err, data) => {
-    if (err)
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while creating the Store."
-      });
-    else res.send(data);
-  });
-};
+//   // Create a Store
+//   const store = new Store({
+//     name: req.body.name,
+//     location: req.body.location,
+//     image: req.body.image
+//   });
+
+//   // Save Store in the database
+//   Store.create(store, (err, data) => {
+//     if (err)
+//       res.status(500).send({
+//         message:
+//           err.message || "Some error occurred while creating the Store."
+//       });
+//     else res.send(data);
+//   });
+// };
 
 // Retrieve all Stores from the database.
 exports.findAll = (req, res) => {

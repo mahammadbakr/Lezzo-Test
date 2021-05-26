@@ -1,35 +1,36 @@
 const Product = require("../Models/product.model.js");
 
 
-// Create and Save a new product
-exports.create = (req, res) => {
-  //Validate request
-  if (req.body == "" || req.body == null || req.body == {} || !req.body) {
-   res.status(400).send({
-     message: "Content can not be empty!"
-   });
-  }
 
-  // Create a Product
-  const product = new Product({
-    name: req.body.name,
-    brand: req.body.brand,
-    color: req.body.color,
-    image: req.body.image,
-    description: req.body.description,
-    price: req.body.price
-  });
+// // Create and Save a new product
+// exports.create = (req, res) => {
+//   //Validate request
+//   if (req.body == "" || req.body == null || req.body == {} || !req.body) {
+//    res.status(400).send({
+//      message: "Content can not be empty!"
+//    });
+//   }
 
-  // Save Product in the database
-  Product.create(product, (err, data) => {
-    if (err)
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while creating the Product."
-      });
-    else res.send(data);
-  });
-};
+//   // Create a Product
+//   const product = new Product({
+//     name: req.body.name,
+//     brand: req.body.brand,
+//     color: req.body.color,
+//     image: req.body.image,
+//     description: req.body.description,
+//     price: req.body.price
+//   });
+
+//   // Save Product in the database
+//   Product.create(product, (err, data) => {
+//     if (err)
+//       res.status(500).send({
+//         message:
+//           err.message || "Some error occurred while creating the Product."
+//       });
+//     else res.send(data);
+//   });
+// };
 
 // Retrieve all Products from the database.
 exports.findAll = (req, res) => {
