@@ -14,6 +14,7 @@ exports.create = (req, res) => {
   const category = new Category({
     name: req.body.name,
     description: req.body.description,
+    image: req.body.image,
     storeId: req.body.storeId
   });
 

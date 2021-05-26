@@ -4,6 +4,7 @@ const sqlDatabase = require("./database.js");
 const Category = function(category) {
   this.name = category.name;
   this.description = category.description;
+  this.image = category.image;
   this.storeId = category.storeId;
 };
 
@@ -20,7 +21,7 @@ Category.create = (newCategory, result) => {
 };
 
 Category.findById = (categoryId, result) => {
-    sqlDatabase.query(`SELECT a.id, a.name, a.description, a.storeId, b.name as storeName, b.location FROM categories as a INNER JOIN stores as b ON a.storeId=b.id WHERE a.id = ${categoryId}`, (err, res) => {
+    sqlDatabase.query(`SELECT a.id, a.name as categoryName, a.description, a.image as categoryImage, a.storeId, b.name as storeName, b.image as storeImage, b.location FROM categories as a INNER JOIN stores as b ON a.storeId=b.id WHERE a.id = ${categoryId}`, (err, res) => {
     if (err) {
       console.log("Error: ", err);
       result(err, null);
@@ -53,8 +54,8 @@ Category.getAll = result => {
 
 Category.updateById = (id, category, result) => {
     sqlDatabase.query(
-    "UPDATE categories SET name = ?, description = ?, storeId = ? WHERE id = ?",
-    [category.name, category.description, category.storeId, id],
+    "UPDATE categories SET name = ?, description = ?, image = ?, storeId = ? WHERE id = ?",
+    [category.name, category.description, category.image, category.storeId, id],
     (err, res) => {
       if (err) {
         console.log("Error: ", err);

@@ -50,7 +50,6 @@ module.exports = app => {
 
 
 
-
    ////Product Routes
   
   // Create a new Product
@@ -70,4 +69,5 @@ module.exports = app => {
 
   // Delete All Products
   app.delete("/deleteProducts", productController.deleteAll);
+
 };

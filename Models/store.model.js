@@ -4,6 +4,7 @@ const sqlDatabase = require("./database.js");
 const Store = function(store) {
   this.name = store.name;
   this.location = store.location;
+  this.image = store.image;
 };
 
 
@@ -52,7 +53,7 @@ Store.getAll = result => {
 
 
 Store.categoriesForEachStoreById = (storeId, result) => {
-    sqlDatabase.query("SELECT a.id, a.name, a.description, a.storeId, b.name as storeName, b.location FROM categories as a INNER JOIN stores as b ON a.storeId = b.id WHERE a.storeId = "+ storeId, (err, res) => {
+    sqlDatabase.query("SELECT a.id, a.name as categoryName, a.image as categoryimage, a.description, a.storeId, b.name as storeName, b.image as storeimage, b.location FROM categories as a INNER JOIN stores as b ON a.storeId = b.id WHERE a.storeId = "+ storeId, (err, res) => {
       if (err) {
         console.log("Error: ", err);
         result(null, err);
@@ -66,8 +67,8 @@ Store.categoriesForEachStoreById = (storeId, result) => {
 
 Store.updateById = (id, store, result) => {
   sqlDatabase.query(
-  "UPDATE stores SET name = ?, location = ? WHERE id = ?",
-  [store.name, store.location, id],
+  "UPDATE stores SET name = ?, location = ?, image = ?, WHERE id = ?",
+  [store.name, store.location, store.image, id],
   (err, res) => {
     if (err) {
       console.log("Error: ", err);

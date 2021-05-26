@@ -12,7 +12,8 @@ if (req.body == "" || req.body == null || req.body == {} || !req.body) {
   // Create a Store
   const store = new Store({
     name: req.body.name,
-    location: req.body.location
+    location: req.body.location,
+    image: req.body.image
   });
 
   // Save Store in the database
