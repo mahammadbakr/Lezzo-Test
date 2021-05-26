@@ -27,4 +27,20 @@ npm install
   nodemon index.js
   ```
 
+
+## Add .ENV File
+
+  create a file in project folder named ".env"
+  and write this code inside it.
+  ```dart
+  PORT = 5000
+  ```
+
+
+## Documentation
+
+  You can look up API routes t=on this link, so you can see how to use routes...
+  API LINK : https://documenter.getpostman.com/view/10416484/TzXwGzLi
+
+
 ## Lezzo-Test
