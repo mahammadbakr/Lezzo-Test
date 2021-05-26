@@ -38,6 +38,22 @@ exports.findAll = (req, res) => {
       });
 };
 
+//Retrieve all Stores and category details from the database.
+exports.categoriesForEachStore = (req, res) => {
+  Store.categoriesForEachStoreById(req.params.storeId, (err, data) => {
+      if (err) {
+        if (err.kind === "not_found") {
+          res.status(404).send({
+            message: `Not found Store with id ${req.params.storeId}.`
+          });
+        } else {
+          res.status(500).send({
+            message: "Error retrieving Store with id " + req.params.storeId
+          });
+        }
+      } else res.send(data);
+    });
+};
 
 // Find a single Store with a storeId
 exports.findOne = (req, res) => {

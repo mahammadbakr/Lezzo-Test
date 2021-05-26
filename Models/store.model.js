@@ -19,6 +19,7 @@ Store.create = (newStore, result) => {
 });
 };
 
+
 Store.findById = (storeId, result) => {
   sqlDatabase.query(`SELECT * FROM stores WHERE id = ${storeId}`, (err, res) => {
   if (err) {
@@ -26,30 +27,40 @@ Store.findById = (storeId, result) => {
     result(err, null);
     return;
   }
-
   if (res.length) {
   //   console.log("Founded Store is : ", res[0]);
     result(null, res[0]);
     return;
   }
-
   // store Not founded by id
   result({ kind: "not_found" }, null);
 });
 };
 
+
 Store.getAll = result => {
-  //SELECT a.id, a.name, a.description, a.storeId, b.name as storeName, b.location FROM categories as a INNER JOIN stores as b ON a.storeId=b.id ;
   sqlDatabase.query("SELECT * FROM stores", (err, res) => {
   if (err) {
     console.log("Error: ", err);
     result(null, err);
     return;
   }
-
   console.log("Stores: ", res);
   result(null, res);
 });
+};
+
+
+Store.categoriesForEachStoreById = (storeId, result) => {
+    sqlDatabase.query("SELECT a.id, a.name, a.description, a.storeId, b.name as storeName, b.location FROM categories as a INNER JOIN stores as b ON a.storeId = b.id WHERE a.storeId = "+ storeId, (err, res) => {
+      if (err) {
+        console.log("Error: ", err);
+        result(null, err);
+        return;
+      }
+      console.log("Stores: ", res);
+      result(null, res);
+    });
 };
 
 
@@ -69,12 +80,12 @@ Store.updateById = (id, store, result) => {
       result({ kind: "not_found" }, null);
       return;
     }
-
     console.log("Updated Store is: ", { id: id, ...store });
     result(null, { id: id, ...store });
   }
 );
 };
+
 
 Store.remove = (id, result) => {
   sqlDatabase.query("DELETE FROM stores WHERE id = ?", id, (err, res) => {
@@ -89,11 +100,11 @@ Store.remove = (id, result) => {
     result({ kind: "not_found" }, null);
     return;
   }
-
   console.log("Deleted Store by id: ", id);
   result(null, res);
 });
 };
+
 
 Store.removeAll = result => {
   sqlDatabase.query("DELETE FROM stores", (err, res) => {
@@ -102,7 +113,6 @@ Store.removeAll = result => {
     result(null, err);
     return;
   }
-
   // console.log(`Deleted stores: ${res.affectedRows}`);
   result(null, res);
 });

@@ -33,6 +33,9 @@ module.exports = app => {
   // Retrieve all Stores
   app.get("/stores", storeController.findAll);
 
+  // Retrieve all Categories for stores
+  app.get("/categoriesForEachStore/:storeId", storeController.categoriesForEachStore);
+
   // Retrieve a single Store with storeId
   app.get("/stores/:storeId", storeController.findOne);
 
