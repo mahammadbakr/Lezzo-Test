@@ -45,7 +45,7 @@ npm install
   you can use this location to change config of database connection between server and mysql:
   - project_folder -> Config -> database.config.js
   
-     ```dart
+  ```dart
   HOST: 'localhost', //local host
   USER: 'root', //username of phpmyadmin
   PASSWORD: '', //password of phpmyadmin
