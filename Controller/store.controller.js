@@ -3,11 +3,11 @@ const Store = require("../Models/store.model.js");
 // Create and Save a new Store
 exports.create = (req, res) => {
 // Validate request
-if (!req.body) {
-    res.status(400).send({
-      message: "Content can not be empty!"
-    });
-  }
+if (req.body == "" || req.body == null || req.body == {} || !req.body) {
+  res.status(400).send({
+    message: "Content can not be empty!"
+  });
+ }
 
   // Create a Store
   const store = new Store({
@@ -37,6 +37,7 @@ exports.findAll = (req, res) => {
         else res.send(data);
       });
 };
+
 
 // Find a single Store with a storeId
 exports.findOne = (req, res) => {

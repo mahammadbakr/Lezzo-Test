@@ -39,6 +39,7 @@ Store.findById = (storeId, result) => {
 };
 
 Store.getAll = result => {
+  //SELECT a.id, a.name, a.description, a.storeId, b.name as storeName, b.location FROM categories as a INNER JOIN stores as b ON a.storeId=b.id ;
   sqlDatabase.query("SELECT * FROM stores", (err, res) => {
   if (err) {
     console.log("Error: ", err);
@@ -50,6 +51,7 @@ Store.getAll = result => {
   result(null, res);
 });
 };
+
 
 Store.updateById = (id, store, result) => {
   sqlDatabase.query(

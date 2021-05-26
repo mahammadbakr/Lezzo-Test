@@ -20,7 +20,7 @@ Category.create = (newCategory, result) => {
 };
 
 Category.findById = (categoryId, result) => {
-    sqlDatabase.query(`SELECT * FROM categories WHERE id = ${categoryId}`, (err, res) => {
+    sqlDatabase.query(`SELECT a.id, a.name, a.description, a.storeId, b.name as storeName, b.location FROM categories as a INNER JOIN stores as b ON a.storeId=b.id WHERE a.id = ${categoryId}`, (err, res) => {
     if (err) {
       console.log("Error: ", err);
       result(err, null);
@@ -39,7 +39,7 @@ Category.findById = (categoryId, result) => {
 };
 
 Category.getAll = result => {
-    sqlDatabase.query("SELECT * FROM categories", (err, res) => {
+    sqlDatabase.query("SELECT a.id, a.name, a.description, a.storeId, b.name as storeName, b.location FROM categories as a INNER JOIN stores as b ON a.storeId=b.id ;", (err, res) => {
     if (err) {
       console.log("Error: ", err);
       result(null, err);

@@ -1,6 +1,6 @@
 module.exports = {
-  HOST: '127.0.0.1',
+  HOST: 'localhost',
   USER: 'root',
   PASSWORD: '',
-  DATABASE: 'categories'
+  DATABASE: 'lezzo_test'
   };

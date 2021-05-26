@@ -4,11 +4,11 @@ const Category = require("../Models/category.model.js");
 // Create and Save a new Category
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body) {
+  if (req.body == "" || req.body == null || req.body == {} || !req.body) {
     res.status(400).send({
       message: "Content can not be empty!"
     });
-  }
+   }
 
   // Create a Category
   const category = new Category({
@@ -46,11 +46,11 @@ exports.findOne = (req, res) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `Not found Category with id ${req.params.customerId}.`
+          message: `Not found Category with id ${req.params.categoryId}.`
         });
       } else {
         res.status(500).send({
-          message: "Error retrieving Category with id " + req.params.customerId
+          message: "Error retrieving Category with id " + req.params.categoryId
         });
       }
     } else res.send(data);
@@ -87,7 +87,7 @@ exports.update = (req, res) => {
   );
 };
 
-// Delete a Category with customerId
+// Delete a Category with categoryId
 exports.delete = (req, res) => {
   Category.remove(req.params.categoryId, (err, data) => {
     if (err) {
